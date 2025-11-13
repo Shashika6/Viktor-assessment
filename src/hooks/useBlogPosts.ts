@@ -9,6 +9,8 @@ interface UseBlogPostsReturn {
   currentPage: number;
   totalPages: number;
   setCurrentPage: (page: number) => void;
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
 }
 
 const POSTS_PER_PAGE = 9;
@@ -19,11 +21,12 @@ export const useBlogPosts = (): UseBlogPostsReturn => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   useEffect(() => {
     const loadCount = async () => {
       try {
-        const count = await fetchBlogPostsCount();
+        const count = await fetchBlogPostsCount(searchQuery);
         setTotalCount(count);
       } catch (err) {
         console.error('Error loading count:', err);
@@ -31,14 +34,18 @@ export const useBlogPosts = (): UseBlogPostsReturn => {
     };
 
     loadCount();
-  }, []);
+  }, [searchQuery]);
 
   useEffect(() => {
     const loadPosts = async () => {
       try {
         setLoading(true);
         const start = (currentPage - 1) * POSTS_PER_PAGE;
-        const data = await fetchBlogPosts({ start, limit: POSTS_PER_PAGE });
+        const data = await fetchBlogPosts({ 
+          start, 
+          limit: POSTS_PER_PAGE,
+          ...(searchQuery && { searchQuery }),
+        });
         setPosts(data);
         setError(null);
       } catch (err) {
@@ -49,7 +56,7 @@ export const useBlogPosts = (): UseBlogPostsReturn => {
     };
 
     loadPosts();
-  }, [currentPage]);
+  }, [currentPage, searchQuery]);
 
   const totalPages = Math.ceil(totalCount / POSTS_PER_PAGE);
 
@@ -60,6 +67,8 @@ export const useBlogPosts = (): UseBlogPostsReturn => {
     currentPage,
     totalPages,
     setCurrentPage,
+    searchQuery,
+    setSearchQuery,
   };
 };
 

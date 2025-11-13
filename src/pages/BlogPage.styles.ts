@@ -7,5 +7,9 @@ export const styles = {
   headerBox: {
     mb: 4,
   },
+
+  searchBox: {
+    mt: 2,
+  },
 };
 

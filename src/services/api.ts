@@ -12,15 +12,22 @@ const apiClient = axios.create({
 interface FetchBlogPostsParams {
   start?: number;
   limit?: number;
+  searchQuery?: string;
 }
 
 export const fetchBlogPosts = async (params?: FetchBlogPostsParams): Promise<BlogPost[]> => {
   try {
+    const queryParams: Record<string, string | number> = {
+      _start: params?.start || 0,
+      _limit: params?.limit || 9,
+    };
+
+    if (params?.searchQuery) {
+      queryParams.title_contains = params.searchQuery;
+    }
+
     const response = await apiClient.get<BlogPost[]>('', {
-      params: {
-        _start: params?.start || 0,
-        _limit: params?.limit || 9,
-      },
+      params: queryParams,
     });
     return response.data;
   } catch (error) {
@@ -29,10 +36,11 @@ export const fetchBlogPosts = async (params?: FetchBlogPostsParams): Promise<Blo
   }
 };
 
-export const fetchBlogPostsCount = async (): Promise<number> => {
+export const fetchBlogPostsCount = async (searchQuery?: string): Promise<number> => {
   try {
-    const response = await apiClient.get<BlogPost[]>('');
-    return response.data.length;
+    const params = searchQuery ? { title_contains: searchQuery } : {};
+    const response = await apiClient.get<number>('/count', { params });
+    return response.data;
   } catch (error) {
     console.error('Error fetching blog posts count:', error);
     throw error;
