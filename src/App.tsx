@@ -1,8 +1,12 @@
+import { CssBaseline } from '@mui/material';
+import { BlogPage } from './pages/BlogPage';
+
 function App() {
   return (
-    <div>
-      <h1>Viktor Blog</h1>
-    </div>
+    <>
+      <CssBaseline />
+      <BlogPage />
+    </>
   );
 }
 
