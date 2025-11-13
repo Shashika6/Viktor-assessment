@@ -2,7 +2,9 @@
 
 <img width="1900" height="989" alt="Screenshot 2025-11-14 at 01 13 45" src="https://github.com/user-attachments/assets/c589810f-6607-4755-ac5f-ebb764be549b" />
 
-* Features
+Demo :- https://viktor-assessment.vercel.app/
+
+## Features
 - Showing blogs
 - Search
 - FIltering and sorting of blog posts
