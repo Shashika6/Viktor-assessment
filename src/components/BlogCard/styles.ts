@@ -15,7 +15,6 @@ export const styles = {
   metaBox: {
     display: 'flex',
     gap: 1,
-    fontSize: '0.8rem',
     color: 'text.secondary',
     alignItems: 'flex-end',
     marginTop: 'auto',

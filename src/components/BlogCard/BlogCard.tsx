@@ -32,17 +32,23 @@ export const BlogCard = ({ post }: BlogCardProps) => {
 
       <CardContent sx={styles.cardContent}>
         <Typography variant="h6" component="h2" gutterBottom>
-          {post?.title || 'Untitled Post'}
+          {post?.title || "Untitled Post"}
         </Typography>
 
         <Typography variant="body2" color="text.secondary" paragraph>
-          {post?.excerpt || 'Summary not available'}
+          {post?.excerpt || "Summary not available"}
         </Typography>
 
         <Box sx={styles.metaBox}>
-          <span>{post.author?.full_name || 'Unknown Author'}</span>
-          <span>•</span>
-          <span>{formatDate(post?.publication_date || '')}</span>
+          <Typography variant="caption" color="text.secondary">
+            {post.author?.full_name || "Unknown Author"}
+          </Typography>
+          <Typography variant="caption" color="text.secondary">
+            •
+          </Typography>
+          <Typography variant="caption" color="text.secondary">
+            {formatDate(post?.publication_date || "")}
+          </Typography>
         </Box>
       </CardContent>
     </Card>
