@@ -1,15 +1,22 @@
-import { Container, Typography, Box } from '@mui/material';
+import { Container, Typography, Box, Select, MenuItem } from '@mui/material';
 import { BlogGrid } from '../components/BlogGrid';
 import { Pagination } from '../components/Pagination';
 import { SearchBar } from '../components/SearchBar';
 import { useBlogPosts } from '../hooks/useBlogPosts';
+import { SORT_ORDER } from '../types/blog.types';
+import type { SortOrder } from '../types/blog.types';
 import { styles } from './BlogPage.styles';
 
 export const BlogPage = () => {
-  const { posts, loading, error, currentPage, totalPages, setCurrentPage, searchQuery, setSearchQuery } = useBlogPosts();
+  const { posts, loading, error, currentPage, totalPages, setCurrentPage, searchQuery, setSearchQuery, sortOrder, setSortOrder } = useBlogPosts();
 
   const handleSearchChange = (query: string) => {
     setSearchQuery(query);
+    setCurrentPage(1);
+  };
+
+  const handleSortChange = (event: { target: { value: string } }) => {
+    setSortOrder(event.target.value as SortOrder);
     setCurrentPage(1);
   };
 
@@ -25,6 +32,10 @@ export const BlogPage = () => {
           </Typography>
           <Box sx={styles.searchBox}>
             <SearchBar value={searchQuery} onChange={handleSearchChange} />
+            <Select value={sortOrder} onChange={handleSortChange} sx={styles.sortSelect}>
+              <MenuItem value={SORT_ORDER.NEWEST_FIRST}>Newest First</MenuItem>
+              <MenuItem value={SORT_ORDER.OLDEST_FIRST}>Oldest First</MenuItem>
+            </Select>
           </Box>
         </Box>
 

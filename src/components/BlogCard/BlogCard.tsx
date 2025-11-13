@@ -27,22 +27,22 @@ export const BlogCard = ({ post }: BlogCardProps) => {
         component="img"
         height="200"
         image={fullImageUrl}
-        alt={post.title}
+        alt={post?.title}
       />
 
       <CardContent sx={styles.cardContent}>
         <Typography variant="h6" component="h2" gutterBottom>
-          {post.title}
+          {post?.title || 'Untitled Post'}
         </Typography>
 
         <Typography variant="body2" color="text.secondary" paragraph>
-          {post.excerpt}
+          {post?.excerpt || 'Summary not available'}
         </Typography>
 
         <Box sx={styles.metaBox}>
-          <span>{post.author.full_name}</span>
+          <span>{post.author?.full_name || 'Unknown Author'}</span>
           <span>•</span>
-          <span>{formatDate(post.publication_date)}</span>
+          <span>{formatDate(post?.publication_date || '')}</span>
         </Box>
       </CardContent>
     </Card>

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { config } from '../config/env';
-import type { BlogPost } from '../types/blog.types';
+import type { BlogPost, SortOrder } from '../types/blog.types';
 
 const apiClient = axios.create({
   baseURL: config.apiUrl,
@@ -13,6 +13,7 @@ interface FetchBlogPostsParams {
   start?: number;
   limit?: number;
   searchQuery?: string;
+  sort?: SortOrder;
 }
 
 export const fetchBlogPosts = async (params?: FetchBlogPostsParams): Promise<BlogPost[]> => {
@@ -24,6 +25,10 @@ export const fetchBlogPosts = async (params?: FetchBlogPostsParams): Promise<Blo
 
     if (params?.searchQuery) {
       queryParams.title_contains = params.searchQuery;
+    }
+
+    if (params?.sort) {
+      queryParams._sort = params.sort;
     }
 
     const response = await apiClient.get<BlogPost[]>('', {

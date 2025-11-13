@@ -10,6 +10,13 @@ export const styles = {
 
   searchBox: {
     mt: 2,
+    display: 'flex',
+    flexDirection: { xs: 'column', sm: 'row' },
+    gap: 2,
+  },
+
+  sortSelect: {
+    minWidth: '160px',
   },
 };
 
