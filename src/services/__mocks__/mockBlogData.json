@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "title": "Getting Started with React",
+    "author": {
+      "id": 1,
+      "full_name": "John Doe"
+    },
+    "cover": {
+      "url": "https://example.com/image1.jpg"
+    },
+    "excerpt": "Learn the basics of React development",
+    "publication_date": "2024-01-15T10:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "title": "Advanced TypeScript Tips",
+    "author": {
+      "id": 2,
+      "full_name": "Jane Smith"
+    },
+    "cover": {
+      "url": "https://example.com/image2.jpg"
+    },
+    "excerpt": "Master TypeScript with these advanced techniques",
+    "publication_date": "2024-02-20T14:30:00.000Z"
+  },
+  {
+    "id": 3,
+    "title": "Building Modern Web Apps",
+    "author": null,
+    "excerpt": "A comprehensive guide to modern web development",
+    "publication_date": "2024-03-10T09:15:00.000Z"
+  }
+]
+
