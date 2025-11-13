@@ -1,5 +1,15 @@
 # Viktor Assessment - Blog Application
 
+<img width="1900" height="989" alt="Screenshot 2025-11-14 at 01 13 45" src="https://github.com/user-attachments/assets/c589810f-6607-4755-ac5f-ebb764be549b" />
+
+* Features
+- Showing blogs
+- Search
+- FIltering and sorting of blog posts
+- Responsive UI
+- URL reflecting page state
+
+
 ## Tech stack used
 
 - **React + TypeScript + Vite**
@@ -10,7 +20,7 @@
 
 1. Clone repo:
 ```bash
-git clone <repository-url>
+git clone git@github.com:Shashika6/Viktor-assessment.git
 cd Viktor-assessment
 ```
 
